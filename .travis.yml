@@ -5,3 +5,4 @@ before_script:
   - npm install
 script:
   - ./node_modules/bower/bin/bower install jquery bootstrap
+  - ./node_modules/nar/bin/nar create
