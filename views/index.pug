@@ -1,0 +1,60 @@
+doctype html
+html
+  head
+    title= title
+    script(src='/jquery/dist/jquery.min.js')
+    link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.css')
+    script(src='/bootstrap/dist/js/bootstrap.min.js')
+  body
+    h1(align='center')= title
+    div.container
+      if server && database
+        div.panel.panel-success
+          div.panel-heading
+            h3.panel-title BarOrder Operativo
+          div.panel-body
+            table.table
+              tr
+                td Server
+                if server
+                  td
+                    span.label.label-success Operativo
+                else if !server
+                  td
+                    span.label.label-danger Non Operativo
+              tr
+                td Database
+                if database
+                  td
+                    span.label.label-success Operativo
+                else if !database
+                  td
+                    span.label.label-danger Non Operativo
+              tr
+                td Versione Server
+                td= version
+      else
+        div.panel.panel-danger
+          div.panel-heading
+            h3.panel-title BarOrder Non Operativo
+          div.panel-body
+            table.table
+              tr
+                td Server
+                if server
+                  td
+                    span.label.label-success Operativo
+                else if !server
+                  td
+                    span.label.label-danger Non Operativo
+              tr
+                td Database
+                if database
+                  td
+                    span.label.label-success Operativo
+                else if !database
+                  td
+                    span.label.label-danger Non Operativo
+              tr
+                td Versione Server
+                td= version
