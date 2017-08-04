@@ -1,4 +1,7 @@
 language: node_js
+sudo: required
+services:
+- docker
 node_js:
 - '5'
 before_script:
@@ -6,7 +9,11 @@ before_script:
 script:
 - ./node_modules/bower/bin/bower install jquery bootstrap
 - ./node_modules/nar/bin/nar create
+- docker build -t therickys93/barorderstatus
 after_success:
+- if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker push therickys93/barorderstatus
+  fi
 - sh set_tags.sh
 deploy:
   provider: releases
